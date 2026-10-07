@@ -66,151 +66,139 @@ Provides a table-based Revit Level editor for managing level names, floor height
 
 Creates Revit grids from CAD grid layers to speed up early model setup and reduce repetitive grid creation and checking work.
 
-### 3. 結構平面 Structural Plan References
-
-建立或更新各樓層結構平面原圖資料，並協助定位結構樑圖層與樑編號圖層，讓後續結構柱、樑、樓板等建模工具能使用一致的 CAD 基準資料。
-
-Creates and updates structural plan reference data for each level, helping align CAD beam layers and beam mark layers so downstream structural modeling tools can use consistent source references.
-
-### 4. 結構表格 Structural Size Tables
-
-整理各樓層結構表格資料，協助建立柱、樑、版尺寸資料，讓後續結構建模流程能更穩定地比對構件尺寸。
-
-Organizes structural size table data for each level, preparing column, beam, and slab size information for more consistent downstream modeling workflows.
-
-### 5. 結構柱 Auto Structural Columns
+### 3. 結構柱 Auto Structural Columns
 
 由 CAD 柱位圖層產生 Revit 結構柱，支援混凝土柱與 RHS 鋼構柱建模，可讀取 DWG 圖塊屬性與柱號，並輔助柱型比對、Grid 距離校正、修正報告與修訂雲形線標示，適合將平面圖柱位快速轉換為可檢查的結構模型。
 
 Generates Revit structural columns from CAD column layers, supporting both concrete columns and RHS steel columns. It can read DWG block attributes and column marks, assist with type matching, grid-distance correction, correction reports, and revision cloud marking for more checkable structural modeling workflows.
 
-### 6. 結構樑 Auto Structural Beams
+### 4. 結構樑 Auto Structural Beams
 
-由 CAD 樑線圖層產生 Revit 結構樑，並輔助檢查樑與柱之間的距離、位置與端點關係，降低逐一建立樑構件的工作量。
+選取已連結 CAD 的樑雙線與標號圖層，產生 Revit 結構樑。樑寬取自雙線；樑深優先讀取標號旁的尺寸，否則依標號查同一份 CAD 中可辨識的表格。可讀取圖塊屬性中的編號與尺寸，並輸出未配對或尺寸不符的檢查結果。
 
-Generates Revit structural beams from CAD beam layers and supports beam-column distance, placement, and endpoint checks.
+Generates Revit structural beams from selected layers in a linked CAD file. Width comes from the beam lines; depth comes from a nearby annotation or, when available, a matching table in the same CAD file. Block attributes can supply marks and sizes, and the tool reports unmatched marks and size discrepancies.
 
-### 7. 建築牆 Auto Architecture Walls
+### 5. 建築牆 Auto Architecture Walls
 
 依牆壁類型讀取 CAD 圖層，自動建立 Revit 建築牆，並支援完成面、牆型與開口相關圖層判讀，適合將建築平面 CAD 牆線轉換為 Revit 牆模型。
 
 Generates Revit architecture walls from CAD wall layers, including wall type, finish wall, and opening-related interpretation workflows.
 
-### 8. 結構樓板 Auto Structural Slabs
+### 6. 結構樓板 Auto Structural Slabs
 
 由 CAD 或模型邊界產生 Revit 結構樓板，減少手動描繪樓板邊界與重複設定構件的時間，適合樓層平面建模與結構板配置作業。
 
 Creates Revit structural slabs from CAD or model boundaries to reduce repetitive slab boundary drafting and setup work.
 
-### 9. 接合面修正 Auto Join Face Align
+### 7. 接合面修正 Auto Join Face Align
 
 以結構柱邊界面為基準，修正牆端接柱位置的極小面偏差，減少牆柱接合後產生的雜線或細縫。
 
 Aligns tiny wall-to-column face offsets against structural column faces to reduce join display artifacts caused by very small positioning drift.
 
-### 10. 接合牆體 Auto Wall Join
+### 8. 接合牆體 Auto Wall Join
 
 依照指定樓層範圍，自動處理牆體與相關構件的 Join Geometry，減少牆交接位置的手動整理時間。
 
 Automatically processes Join Geometry for walls and related elements within selected levels, reducing manual wall cleanup work.
 
-### 11. 接合樓層交界 Auto Floor Boundary Join
+### 9. 接合樓層交界 Auto Floor Boundary Join
 
 依照指定樓層範圍，自動處理樓層交界附近的 Join Geometry，改善樓板、牆體或上下樓層邊界附近的幾何整理效率。
 
 Processes Join Geometry around floor or level boundaries to improve model cleanup near slab, wall, and level transition conditions.
 
-### 12. 切換柱樑接合 Column And Beam Join Switch
+### 10. 切換柱樑接合 Column And Beam Join Switch
 
 依照指定樓層範圍，批次切換柱樑之間的接合順序，協助整理柱、樑交接時的顯示與幾何關係。
 
 Batch switches column-beam join order within selected levels to help control visibility and geometry behavior at intersections.
 
-### 13. 切割樑牆 Auto Cut Beam-Wall
+### 11. 切割樑牆 Auto Cut Beam-Wall
 
 在平面圖中依使用者選取的切割線處理結構樑與牆體，可批次切割樑牆交會位置，並搭配 Join Geometry 讓平面表現維持乾淨。
 
 Cuts beam-wall intersections based on selected plan-view cut lines and supports cleanup with Join Geometry for clearer plan representation.
 
-### 14. 車位編號 Parking Space Numbering
+### 12. 車位編號 Parking Space Numbering
 
 依照選取路徑與設定規則，批次建立或更新停車位編號，降低地下室、停車場與大量車位平面逐一輸入編號的時間與錯誤。
 
 Creates or updates parking space numbers in batches based on selected paths and numbering rules.
 
-### 15. 軸線尺寸 Grid Dimension
+### 13. 軸線尺寸 Grid Dimension
 
 在平面圖中選取同方向平行 Grid，自動產生連續軸線尺寸與總長尺寸，適合快速完成軸線到軸線的外層尺寸標註。
 
 Creates continuous grid dimensions and overall dimensions from selected parallel grids in plan views.
 
-### 16. 樓層尺寸 Level Dimension
+### 14. 樓層尺寸 Level Dimension
 
 在立面圖或剖面圖中依 Level 建立逐層高度與分段總高度尺寸，可依 GL、R1FL 與屋突段落整理樓層高度標註。
 
 Creates level height dimensions in elevation or section views, including floor-by-floor dimensions and grouped overall height dimensions.
 
-### 17. 柱位尺寸 Column Layout Dimension
+### 15. 柱位尺寸 Column Layout Dimension
 
 針對柱位放樣圖產生柱位定位尺寸，可依選取柱與軸線建立柱中心、柱邊或軸線定位尺寸，並支援混凝土包覆 RHS 鋼柱的分層標註邏輯。完成後會輸出診斷資訊，協助檢查未成功標註或特殊配對的位置。
 
 Creates column layout dimensions from selected columns and grids, supporting column center, column edge, and grid-based positioning dimensions, including layered dimensioning for concrete-encased RHS steel columns. Diagnostic output helps review skipped, failed, or special pairing conditions.
 
-### 18. 外牆大尺寸 Facade Major Dimension
+### 16. 外牆大尺寸 Facade Major Dimension
 
 依結構柱與建築牆標註外牆主要進退面尺寸。使用者選取同一面向的柱牆並點選尺寸線側，工具會建立主要段落尺寸與總尺寸。
 
 Creates major facade dimensions from selected structural columns and architecture walls, including primary facade steps and overall dimensions.
 
-### 19. 外牆小尺寸 Facade Detail Dimension
+### 17. 外牆小尺寸 Facade Detail Dimension
 
 標註外牆面內的門窗、開口、Grid 與柱牆細部尺寸，適合整理外牆面段落內的局部小尺寸與開口關係。
 
 Creates detailed facade dimensions for openings, grids, columns, walls, and local facade segments.
 
-### 20. 外牆大小尺寸 Facade Auto Dimension
+### 18. 外牆大小尺寸 Facade Auto Dimension
 
 依選取的外牆相關物件自動判斷面向，並整合產生外牆大尺寸與外牆小尺寸，減少分開操作的時間。
 
 Automatically determines the facade direction from selected elements and creates both major and detail facade dimensions.
 
-### 21. 內牆尺寸 Interior Wall Dimension
+### 19. 內牆尺寸 Interior Wall Dimension
 
 選取內牆與使用者事先繪製的尺寸輔助線，沿輔助線自動標註牆面間距、牆厚與房間尺寸，適合室內隔間尺寸整理。
 
 Creates interior wall dimensions along user-drawn guide lines, including wall spacing, wall thickness, and room-related distances.
 
-### 22. 樑位尺寸 Structural Beam Dimension
+### 20. 樑位尺寸 Structural Beam Dimension
 
 用於筏基層平面，依使用者繪製的 Detail Line 輔助線，自動標註結構樑邊界與樑距，協助整理筏基層樑位尺寸。
 
 Creates structural beam dimensions in raft foundation plans using user-drawn Detail Line guides, helping annotate beam boundaries and spacing more efficiently.
 
-### 23. 地下外牆尺寸 Basement Exterior Wall Dimension
+### 21. 地下外牆尺寸 Basement Exterior Wall Dimension
 
 針對地下層外牆平面，選取同一面向的結構柱與 Grid，自動建立柱寬、柱距，以及柱邊與 Grid 關係尺寸，協助整理地下外牆定位標註。
 
 Creates basement exterior wall dimensions from selected structural columns and grids on the same side, including column widths, column spacing, and column-edge-to-grid relationships.
 
-### 24. 自動圖紙化 Auto Sheet View Placement
+### 22. 自動圖紙化 Auto Sheet View Placement
 
 依視圖名稱與從屬視圖關係，自動建立 Revit 圖紙並放置 Viewport，適合將已整理完成的平面圖、立面圖與剖面圖批次放入對應圖框。工具會依圖號分組、依視圖順序排版，並協助減少重複建立圖紙與手動放置視圖的時間。
 
 Creates Revit sheets and places viewports based on view names and dependent-view relationships, helping users batch-place prepared plans, elevations, and sections onto matching sheets. It groups views by sheet number, arranges them by view sequence, and reduces repetitive sheet creation and manual viewport placement work.
 
-### 25. SketchUp Export
+### 23. SketchUp Export
 
 將目前 Revit 3D 視圖先匯出為 DWG，再啟動 SketchUp 2020 轉成可開啟的 SKP 檔，協助模型交換、簡報與後續視覺化作業。工具會以目前作用中的 3D 視圖作為輸出範圍，輸出資料夾會建立在 RVT 檔案旁的 `RevitToSketchUpExports`，若 SketchUp 未自動完成轉換，也會保留批次檔與 Ruby 腳本供使用者重新執行。
 
 Exports the active Revit 3D view to DWG and launches SketchUp 2020 to convert it into a compatible SKP file for model exchange, presentation, and visualization workflows. The output is saved beside the RVT file in `RevitToSketchUpExports`, with batch and Ruby fallback scripts kept for rerunning the conversion if SketchUp does not finish automatically.
 
-### 26. 連線開關 AI Collaboration
+### 24. 連線開關 AI Collaboration
 
 開啟或關閉 AI 本機協作連線，讓 AI 在安全的本機流程中讀取目前模型脈絡，並依明確方案協助建立可復原的 Revit 平面配置。
 
 Turns the local AI collaboration connection on or off, allowing AI-assisted workflows to read the current model context and apply explicit, undoable Revit layout plans through a local process.
 
-### 27. 授權資訊 License Information
+### 25. 授權資訊 License Information
 
 提供授權狀態查看功能，可確認試用狀態、機器碼、到期日，並依畫面指示申請或更新授權。
 
