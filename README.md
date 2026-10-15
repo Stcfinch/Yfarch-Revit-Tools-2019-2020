@@ -6,6 +6,8 @@ Yfarch BIM Pro Tools for Revit 2019 is a BIM productivity toolset built for Auto
 
 ## 下載 Download
 
+待發佈更新：[2026-10-15 功能與候選版說明](updates/2026-10-15.md)。新增視圖裁切、中文命名與圖號重排；此說明尚未代表下載頁已有正式新版。
+
 請到 GitHub Releases 頁面下載最新版安裝檔：
 
 Download the latest installer from the GitHub Releases page:
@@ -31,6 +33,8 @@ YfarchBIMProToolsForRevit2019.zip
 安裝程式與 Revit 內的使用介面支援繁體中文與英文，方便在不同語言環境中安裝、部署與使用。
 
 The installer and in-app Revit interface support both Traditional Chinese and English for easier installation, deployment, and daily use across different language environments.
+
+本次新增的視圖裁切與視圖命名操作視窗目前以繁體中文為主。The new View Crop and View Naming dialogs are currently primarily Traditional Chinese.
 
 ## 安裝方式 Installation
 
@@ -77,6 +81,10 @@ Generates Revit structural columns from CAD column layers, supporting both concr
 選取已連結 CAD 的樑雙線與標號圖層，產生 Revit 結構樑。樑寬取自雙線；樑深優先讀取標號旁的尺寸，否則依標號查同一份 CAD 中可辨識的表格。可讀取圖塊屬性中的編號與尺寸，並輸出未配對或尺寸不符的檢查結果。
 
 Generates Revit structural beams from selected layers in a linked CAD file. Width comes from the beam lines; depth comes from a nearby annotation or, when available, a matching table in the same CAD file. Block attributes can supply marks and sizes, and the tool reports unmatched marks and size discrepancies.
+
+本次候選版另加入鋼構樑生成、細部尺寸表匯入與匹配、支承端點調整，以及圈出未生成樑編號。補尺寸紀錄依目前樓層篩選，避免混入其他樓層。
+
+The pending candidate also adds steel-beam generation, detail-table import and matching, support-end adjustment, and marking of uncreated beam numbers. Missing-size supplementation filters records by the active level.
 
 ### 5. 建築牆 Auto Architecture Walls
 
@@ -180,25 +188,37 @@ Creates structural beam dimensions in raft foundation plans using user-drawn Det
 
 Creates basement exterior wall dimensions from selected structural columns and grids on the same side, including column widths, column spacing, and column-edge-to-grid relationships.
 
-### 22. 自動圖紙化 Auto Sheet View Placement
+### 22. 視圖裁切 View Crop
+
+先以四個參考平面建立全區及分區範圍，再依實際視圖類型選擇樓層視圖。每張視圖可分別採用只裁全區或全區加分區，並自動開啟裁剪與範圍可見。可建立或更新分區從屬視圖，設定保存在 RVT，重跑時依最新參考平面位置更新。
+
+Define overall and zone boundaries with reference planes, then select plan views by their actual view type. Each view can use overall-only or overall-plus-zone processing, with crop visibility enabled and dependent views created or updated.
+
+### 23. 視圖命名 View Naming
+
+同一按鈕提供中文命名與編號／重排兩個功能。中文命名依樓層及用途產生圖名，保留樑位高程等特殊用途，並以保留的視圖推算共用樓層範圍。分區從屬視圖附加區名。圖號依樓層由低到高，同層以比例數字 150、100、50 排序；主視圖顯示所含圖號範圍與實際比例，從屬視圖各占一號。新增視圖後可重排使後方順延，並提供預覽及重名檢查。
+
+Provides separate Chinese-title and drawing-number workflows. Preserve drawing purposes and zones, infer shared-floor titles from retained views, and reorder by level then descending scale denominator. New views can be inserted by rerunning numbering; previews and duplicate-name checks are included.
+
+### 24. 自動圖紙化 Auto Sheet View Placement
 
 依視圖名稱與從屬視圖關係，自動建立 Revit 圖紙並放置 Viewport，適合將已整理完成的平面圖、立面圖與剖面圖批次放入對應圖框。工具會依圖號分組、依視圖順序排版，並協助減少重複建立圖紙與手動放置視圖的時間。
 
 Creates Revit sheets and places viewports based on view names and dependent-view relationships, helping users batch-place prepared plans, elevations, and sections onto matching sheets. It groups views by sheet number, arranges them by view sequence, and reduces repetitive sheet creation and manual viewport placement work.
 
-### 23. SketchUp Export
+### 25. SketchUp Export
 
 將目前 Revit 3D 視圖先匯出為 DWG，再啟動 SketchUp 2020 轉成可開啟的 SKP 檔，協助模型交換、簡報與後續視覺化作業。工具會以目前作用中的 3D 視圖作為輸出範圍，輸出資料夾會建立在 RVT 檔案旁的 `RevitToSketchUpExports`，若 SketchUp 未自動完成轉換，也會保留批次檔與 Ruby 腳本供使用者重新執行。
 
 Exports the active Revit 3D view to DWG and launches SketchUp 2020 to convert it into a compatible SKP file for model exchange, presentation, and visualization workflows. The output is saved beside the RVT file in `RevitToSketchUpExports`, with batch and Ruby fallback scripts kept for rerunning the conversion if SketchUp does not finish automatically.
 
-### 24. 連線開關 AI Collaboration
+### 26. 連線開關 AI Collaboration
 
 開啟或關閉 AI 本機協作連線，讓 AI 在安全的本機流程中讀取目前模型脈絡，並依明確方案協助建立可復原的 Revit 平面配置。
 
 Turns the local AI collaboration connection on or off, allowing AI-assisted workflows to read the current model context and apply explicit, undoable Revit layout plans through a local process.
 
-### 25. 授權資訊 License Information
+### 27. 授權資訊 License Information
 
 提供授權狀態查看功能，可確認試用狀態、機器碼、到期日，並依畫面指示申請或更新授權。
 
