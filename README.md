@@ -1,60 +1,59 @@
-﻿# Yfarch BIM Pro Tools for Revit 2019
+﻿# 永豐工坊｜Revit 2019／2020 工具集
 
-Yfarch BIM Pro Tools for Revit 2019 是一套專為 Autodesk Revit 2019 製作的 BIM 輔助工具集，目標是減少重複建模、整理、編號、接合與匯出工作，讓建築與結構模型製作流程更快、更一致。
+永豐工坊是一套支援 Autodesk Revit 2019 與 2020 的外掛工具集，協助處理建模、接合、尺寸標註、視圖整理、圖紙編排與匯出等工作。
 
-Yfarch BIM Pro Tools for Revit 2019 is a BIM productivity toolset built for Autodesk Revit 2019. It helps reduce repetitive modeling, cleanup, numbering, joining, and export tasks in production workflows.
+Yfarch Revit Tools supports Autodesk Revit 2019 and 2020 with modeling, joining, dimensioning, view preparation, sheet placement, and export tools.
 
 ## 下載 Download
 
-待發佈更新：[2026-10-15 功能與候選版說明](updates/2026-10-15.md)。新增視圖裁切、中文命名與圖號重排；此說明尚未代表下載頁已有正式新版。
+最新版本：[`v2026.11.04`](updates/2026-11-04.md)。
 
 請到 GitHub Releases 頁面下載最新版安裝檔：
 
 Download the latest installer from the GitHub Releases page:
 
-https://github.com/Stcfinch/YfarchBIMProToolsForRevit2019/releases
+https://github.com/Stcfinch/Yfarch-Revit-Tools-2019-2020/releases
 
 目前建議下載檔案：
 
 Recommended release package:
 
 ```text
-YfarchBIMProToolsForRevit2019.zip
+Yfarch-Revit-Tools-2019-2020.zip
 ```
 
 ## 支援環境 Supported Environment
 
-- Autodesk Revit 2019
+- Autodesk Revit 2019 或 2020
 - Windows
 - .NET Framework 4.7.2 或相容環境
 
 ## 語言支援 Language Support
 
-安裝程式與 Revit 內的使用介面支援繁體中文與英文，方便在不同語言環境中安裝、部署與使用。
+安裝程式可選繁體中文或英文。Revit 頁籤「永豐工坊」與功能分組固定為繁體中文；英文設定可顯示英文按鈕及部分提示。視圖裁切、視圖命名等操作視窗仍以繁體中文為主。
 
-The installer and in-app Revit interface support both Traditional Chinese and English for easier installation, deployment, and daily use across different language environments.
+The installer supports Traditional Chinese and English. The Revit ribbon tab and panel names stay in Traditional Chinese; English settings translate buttons and some prompts. Some feature dialogs are primarily Traditional Chinese.
 
-本次新增的視圖裁切與視圖命名操作視窗目前以繁體中文為主。The new View Crop and View Naming dialogs are currently primarily Traditional Chinese.
 
 ## 安裝方式 Installation
 
 中文：
 
-1. 關閉 Autodesk Revit 2019。
+1. 關閉要安裝的 Autodesk Revit 2019 或 2020。
 2. 到 Releases 頁面下載最新版安裝包。
 3. 如下載的是 `.zip` 檔，請先解壓縮。
-4. 執行安裝程式。
-5. 重新開啟 Autodesk Revit 2019。
-6. 在 Revit 功能列中使用 Yfarch BIM 工具。
+4. 執行安裝程式，選擇 Revit 2019 或 2020。
+5. 若兩版都要使用，完成第一版安裝後再執行一次安裝程式，選擇另一版。
+6. 重新開啟 Revit，在「永豐工坊」頁籤使用功能。
 
 English:
 
-1. Close Autodesk Revit 2019.
+1. Close Autodesk Revit 2019 or 2020 before installing.
 2. Download the latest release package from the Releases page.
 3. Extract the `.zip` file if needed.
-4. Run the setup executable.
-5. Open Autodesk Revit 2019 again.
-6. Use the Yfarch BIM tools from the Revit ribbon.
+4. Run setup and choose Revit 2019 or 2020.
+5. To use both versions, run setup again and choose the other version.
+6. Restart Revit and open the 「永豐工坊」 ribbon tab.
 
 ## 功能介紹 Features
 
@@ -82,9 +81,9 @@ Generates Revit structural columns from CAD column layers, supporting both concr
 
 Generates Revit structural beams from selected layers in a linked CAD file. Width comes from the beam lines; depth comes from a nearby annotation or, when available, a matching table in the same CAD file. Block attributes can supply marks and sizes, and the tool reports unmatched marks and size discrepancies.
 
-本次候選版另加入鋼構樑生成、細部尺寸表匯入與匹配、支承端點調整，以及圈出未生成樑編號。補尺寸紀錄依目前樓層篩選，避免混入其他樓層。
+此版本另加入鋼構樑生成、細部尺寸表匯入與匹配、支承端點調整，以及圈出未生成樑編號。補尺寸紀錄依目前樓層篩選，避免混入其他樓層。
 
-The pending candidate also adds steel-beam generation, detail-table import and matching, support-end adjustment, and marking of uncreated beam numbers. Missing-size supplementation filters records by the active level.
+This version also adds steel-beam generation, detail-table import and matching, support-end adjustment, and marking of uncreated beam numbers. Missing-size supplementation filters records by the active level.
 
 ### 5. 建築牆 Auto Architecture Walls
 
@@ -202,9 +201,9 @@ Provides separate Chinese-title and drawing-number workflows. Preserve drawing p
 
 ### 24. 自動圖紙化 Auto Sheet View Placement
 
-依視圖名稱與從屬視圖關係，自動建立 Revit 圖紙並放置 Viewport，適合將已整理完成的平面圖、立面圖與剖面圖批次放入對應圖框。工具會依圖號分組、依視圖順序排版，並協助減少重複建立圖紙與手動放置視圖的時間。
+同一按鈕提供「圖紙修正定位」與「自動放圖紙」。前者可勾選專案已載入的圖框族與型別，自動偵測外框及可放區，不必先建立空白圖紙；後者依圖號建立圖紙並放置視圖，使用實際 Viewport 外框左右置中，並以下方可見圖框線為基準預留約 3 cm。同一主視圖拆出的從屬視圖會使用相同圖框型別。
 
-Creates Revit sheets and places viewports based on view names and dependent-view relationships, helping users batch-place prepared plans, elevations, and sections onto matching sheets. It groups views by sheet number, arranges them by view sequence, and reduces repetitive sheet creation and manual viewport placement work.
+Detects the outer border and usable area of loaded title block families without requiring blank sheets. It then creates sheets from view numbers and places viewports using their actual bounds. Dependent views from the same primary view use the same title block type.
 
 ### 25. SketchUp Export
 
@@ -228,14 +227,14 @@ Shows license and trial information, including machine code, expiration status, 
 
 本工具適合：
 
-- 使用 Autodesk Revit 2019 的建築、結構與 BIM 工作流程
+- 使用 Autodesk Revit 2019 或 2020 的建築與結構工作流程
 - 需要處理大量重複建模工作的使用者
 - 需要快速整理模型接合、編號或匯出流程的 BIM 團隊
 - 想降低手動操作錯誤並提高建模一致性的專案
 
 This toolset is designed for:
 
-- Architecture, structure, and BIM workflows using Autodesk Revit 2019
+- Architecture and structure workflows using Autodesk Revit 2019 or 2020
 - Users who need to reduce repetitive modeling tasks
 - BIM teams that need faster model cleanup, numbering, joining, and export workflows
 - Projects that require better modeling consistency and fewer manual mistakes
