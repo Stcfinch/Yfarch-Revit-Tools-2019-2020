@@ -6,7 +6,7 @@ Yfarch Revit Tools supports Autodesk Revit 2019 and 2020 with modeling, joining,
 
 ## 下載 Download
 
-最新版本：[`v2026.11.04`](updates/2026-11-04.md)。
+最新版本：[`v2026.11.05`](updates/2026-11-05.md)。
 
 請到 GitHub Releases 頁面下載最新版安裝檔：
 
@@ -201,9 +201,9 @@ Provides separate Chinese-title and drawing-number workflows. Preserve drawing p
 
 ### 24. 自動圖紙化 Auto Sheet View Placement
 
-同一按鈕提供「圖紙修正定位」與「自動放圖紙」。前者可勾選專案已載入的圖框族與型別，自動偵測外框及可放區，不必先建立空白圖紙；後者依圖號建立圖紙並放置視圖，使用實際 Viewport 外框左右置中，並以下方可見圖框線為基準預留約 3 cm。同一主視圖拆出的從屬視圖會使用相同圖框型別。
+同一按鈕提供「圖紙修正定位」與「自動放圖紙」。前者可勾選專案已載入的圖框族與型別，自動偵測外框及可放區，不必先建立空白圖紙；後者依圖號建立圖紙並放置視圖。視圖尺寸與排版以編輯裁剪的 CropBox 為準，先比較不同分排與圖框的可放空間。底排各視圖的裁剪下緣距圖框空白區底線 3 cm，多張視圖依設定間距排列；2×2 等兩排張數相同的排法共用左緣。試放後若整組 Viewport 上緣超出空白區，會撤回並改試下一方案；全部不合適時才保留置中位置。同一主視圖拆出的從屬視圖會使用相同圖框型別。
 
-Detects the outer border and usable area of loaded title block families without requiring blank sheets. It then creates sheets from view numbers and places viewports using their actual bounds. Dependent views from the same primary view use the same title block type.
+Detects the border and usable area of loaded title block families without requiring blank sheets. It creates sheets from view numbers and compares candidate arrangements by their edited crop bounds and available sheet space. Each view in the bottom row has a 3 cm gap above the title block's blank-area bottom edge; a 2×2 layout aligns the left edges of both rows. If a trial viewport group extends above the usable area, the add-in rolls it back and tries the next arrangement. It keeps a centered placement only if all candidates fail. Dependent views from the same primary view use the same title block type.
 
 ### 25. SketchUp Export
 
